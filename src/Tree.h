@@ -16,7 +16,7 @@
 #ifndef TREE_H
 #define TREE_H
 
-#include "LinkedList.h"
+#include "FilterList.h"
 
 template <typename VAL_T>
 class Tree
@@ -25,7 +25,7 @@ public:
 	VAL_T value;
 	void appendChild(Tree<VAL_T> const &child) { subtrees.append(&child); }
 protected:
-	LinkedList<Tree<VAL_T> *> subtrees;
+	FilterList<Tree<VAL_T> *> subtrees;
 };
 
 #endif

@@ -7,7 +7,7 @@
 #ifndef FRAMEWORK_H
 #define FRAMEWORK_H
 
-#include "LinkedList.h"
+#include "FilterList.h"
 #include "Tree.h"
 
 /**
@@ -187,7 +187,7 @@ protected:
 /**
  * A chain of filters.
  */
-class FilterChain : public LinkedList<Filter *>, public Filter
+class FilterChain : public FilterList<Filter *>, public Filter
 {
 protected:
 	virtual void const * const get_output_val_ptr() final
@@ -211,8 +211,8 @@ protected:
 		}
 	}
 private:
-	LinkedList<Filter *>::iterator it;
-	LinkedList<Filter *>::iterator prev;
+	FilterList<Filter *>::iterator it;
+	FilterList<Filter *>::iterator prev;
 };
 
 /**

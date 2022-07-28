@@ -1,5 +1,5 @@
 /**
- * @file LinkedList.h
+ * @file FilterList.h
  * The linked list class to support the Tree class and FilterChain class.
  * @note
  * This implementation is not meant to be directly used by the client code.
@@ -8,16 +8,16 @@
  *
  * @author Haimo Zhang <zh.hammer.dev@gmail.com>
  */
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+#ifndef FILTERLIST_H
+#define FILTERLIST_H
 
 template <typename VAL_T>
-class LinkedListNode
+class FilterNode
 {
 public:
 	VAL_T value;
-	LinkedListNode<VAL_T> *next;
-	LinkedListNode(VAL_T const &v): value(v), next(NULL) { }
+	FilterNode<VAL_T> *next;
+	FilterNode(VAL_T const &v): value(v), next(NULL) { }
 };
 
 template <typename VAL_T>
@@ -45,19 +45,19 @@ public:
 	 */
 	bool operator!=(NodeIterator<VAL_T> const &it) { return ptr != it.ptr; }
 	NodeIterator(): ptr(NULL) { }
-	NodeIterator(LinkedListNode<VAL_T> *n): ptr(n) { }
+	NodeIterator(FilterNode<VAL_T> *n): ptr(n) { }
 private:
-	LinkedListNode<VAL_T> *ptr;
+	FilterNode<VAL_T> *ptr;
 };
 
 template <typename VAL_T>
-class LinkedList
+class FilterList
 {
 public:
-	LinkedList(): head(NULL), tail(NULL), last_ptr(NULL) { }
-	~LinkedList()
+	FilterList(): head(NULL), tail(NULL), last_ptr(NULL) { }
+	~FilterList()
 	{
-		LinkedListNode<VAL_T> *to_del;
+		FilterNode<VAL_T> *to_del;
 		while (head) {
 			to_del = head;
 			head = head->next;
@@ -69,7 +69,7 @@ public:
 	 */
 	void append(VAL_T const &v)
 	{
-		LinkedListNode<VAL_T> *new_node = new LinkedListNode<VAL_T>(v);
+		FilterNode<VAL_T> *new_node = new FilterNode<VAL_T>(v);
 		if (head) {
 			*tail = new_node;
 		}
@@ -99,9 +99,9 @@ public:
 	 */
 	NodeIterator<VAL_T> last() { return NodeIterator<VAL_T>(last_ptr); }
 private:
-	LinkedListNode<VAL_T> *head;
-	LinkedListNode<VAL_T> **tail;
-	LinkedListNode<VAL_T> *last_ptr;
+	FilterNode<VAL_T> *head;
+	FilterNode<VAL_T> **tail;
+	FilterNode<VAL_T> *last_ptr;
 };
 
 #endif
